@@ -30,7 +30,7 @@ public struct Problems {
     }
 
     public func solveAll() -> String {
-        (0..<problems.count)
+        (1...problems.count)
             .map { solve($0) }
             .reduce(into: "", +=)
     }
