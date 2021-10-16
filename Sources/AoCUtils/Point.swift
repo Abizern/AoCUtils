@@ -48,11 +48,11 @@ extension Point.Direction {
         case right
     }
 
-    mutating func turn(_ turn: Turn) {
+    public mutating func turn(_ turn: Turn) {
         self = self.turned(turn)
     }
 
-    func turned(_ turn: Turn) -> Point.Direction {
+    public func turned(_ turn: Turn) -> Point.Direction {
         let directions = Self.allCases
         let index = directions.firstIndex(of: self)!
         let newIndex: Int
