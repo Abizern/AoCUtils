@@ -1,5 +1,4 @@
 import Foundation
-import AppKit
 
 public struct Point {
     public var x: Int
@@ -12,7 +11,7 @@ public struct Point {
 }
 
 extension Point {
-    public enum Direction {
+    public enum Direction: CaseIterable {
         case up
         case right
         case down
@@ -43,8 +42,31 @@ extension Point {
     }
 }
 
+extension Point.Direction {
+    public enum Turn {
+        case left
+        case right
+    }
 
+    mutating func turn(_ turn: Turn) {
+        self = self.turned(turn)
+    }
+
+    func turned(_ turn: Turn) -> Point.Direction {
+        let directions = Self.allCases
+        let index = directions.firstIndex(of: self)!
+        let newIndex: Int
+
+        switch turn {
+        case .left:
+            newIndex = (index + 4 - 1) % 4
+        case .right:
+            newIndex = (index + 1) % 4
+        }
+
+        return directions[newIndex]
+    }
+}
 
 extension Point: Hashable {}
-
 extension Point: Codable {}

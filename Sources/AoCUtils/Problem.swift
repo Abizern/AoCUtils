@@ -8,79 +8,97 @@ public protocol Problem {
 }
 
 extension Problem {
+    init() throws {
+        throw UtilsError.notImplemented
+    }
+
+    func title() throws -> String {
+        throw UtilsError.notImplemented
+    }
+
+    func part1() throws -> String {
+        throw UtilsError.notImplemented
+    }
+
+    func part2() throws -> String {
+        throw UtilsError.notImplemented
+    }
+}
+
+extension Problem {
     func outputPart1() -> String {
-        let t: String
-        let r: String
+        let title: String
+        let result: String
 
         do {
-            t = try title()
+            title = try self.title()
         } catch {
-            t = error.localizedDescription
+            title = error.localizedDescription
         }
 
         do {
-            r = try part1()
+            result = try part1()
         } catch {
-            r = error.localizedDescription
+            result = error.localizedDescription
         }
 
         return """
-            \(t)
-            Part 1: \(r)
+            \(title)
+            Part 1: \(result)
 
             """
     }
 
     func outputPart2() -> String {
-        let t: String
-        let r: String
+        let title: String
+        let result: String
 
         do {
-            t = try title()
+            title = try self.title()
         } catch {
-            t = error.localizedDescription
+            title = error.localizedDescription
         }
 
         do {
-            r = try part2()
+            result = try part2()
         } catch {
-            r = error.localizedDescription
+            result = error.localizedDescription
         }
 
         return """
-            \(t)
-            Part 2: \(r)
+            \(title)
+            Part 2: \(result)
 
             """
     }
 
     func outputAll() -> String {
-        let t: String
-        let r1: String
-        let r2: String
+        let title: String
+        let result1: String
+        let result2: String
 
         do {
-            t = try title()
+            title = try self.title()
         } catch {
-            t = error.localizedDescription
+            title = error.localizedDescription
         }
 
         do {
-            r1 = try part1()
+            result1 = try part1()
         } catch {
-            r1 = error.localizedDescription
+            result1 = error.localizedDescription
         }
 
         do {
-            r2 = try part2()
+            result2 = try part2()
         } catch {
-            r2 = error.localizedDescription
+            result2 = error.localizedDescription
         }
 
         return """
-            \(t)
-            Part 1: \(r1)
-            Part 2: \(r2)
+            \(title)
+            Part 1: \(result1)
+            Part 2: \(result2)
 
             """
     }

@@ -1,5 +1,5 @@
-import XCTest
 @testable import AoCUtils
+import XCTest
 
 final class PointTests: XCTestCase {
     func testInit() {
@@ -29,5 +29,53 @@ final class PointTests: XCTestCase {
 
         pt.translate(.left, by: 1)
         XCTAssertEqual(pt, Point(x: 0, y: 0))
+    }
+}
+
+final class PointDirectionTests: XCTestCase {
+    func testTurnedLeft() {
+        let directions: [Point.Direction] = [ .up, .right, .down, .left]
+        let turned = directions.map { $0.turned(.left) }
+        XCTAssertEqual(turned, [.left, .up, .right, .down])
+    }
+
+    func testTurnedRight() {
+        let directions: [Point.Direction] = [ .up, .right, .down, .left]
+        let turned = directions.map { $0.turned(.right) }
+        XCTAssertEqual(turned, [.right, .down, .left, .up])
+    }
+
+    func testTurnLeft() {
+        var a = Point.Direction.up
+        var b = Point.Direction.right
+        var c = Point.Direction.down
+        var d = Point.Direction.left
+
+        a.turn(.left)
+        b.turn(.left)
+        c.turn(.left)
+        d.turn(.left)
+
+        XCTAssertEqual(a, .left)
+        XCTAssertEqual(b, .up)
+        XCTAssertEqual(c, .right)
+        XCTAssertEqual(d, .down)
+    }
+
+    func testTurnright() {
+        var a = Point.Direction.up
+        var b = Point.Direction.right
+        var c = Point.Direction.down
+        var d = Point.Direction.left
+
+        a.turn(.right)
+        b.turn(.right)
+        c.turn(.right)
+        d.turn(.right)
+
+        XCTAssertEqual(a, .right)
+        XCTAssertEqual(b, .down)
+        XCTAssertEqual(c, .left)
+        XCTAssertEqual(d, .up)
     }
 }
